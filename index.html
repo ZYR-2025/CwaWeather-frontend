@@ -15,14 +15,14 @@
 
     <style>
         :root {
-           --ac-green: #BEE7C5;   
-           --ac-bg-pattern: #EAF7EE;
-           --ac-cream: #FFFFFF;  
-           --ac-yellow: #F4F4F4;
-           --ac-brown: #2C2C2C;  
-           --ac-blue: #7ACCC8;
-           --ac-dark: #1F1F1F;
-           --ac-card-border: #DADADA;
+           --ac-green: #0B1226; /* 星空黑藍 */
+           --ac-bg-pattern: radial-gradient(circle at top, #355CFF 0%, #1E2960 40%, #0B1226 100%);
+           --ac-cream: rgba(255,255,255,0.9);
+           --ac-yellow: #FFE47A;    /* 極光黃 */
+           --ac-brown: #FFFFFF;     /* 全亮字 */
+           --ac-blue: #7CFFEB;      /* 極光亮青 */
+           --ac-dark: #FFFFFF;
+           --ac-card-border: rgba(255,255,255,0.5);
         }
 
         * {
@@ -36,14 +36,30 @@
             font-family: 'Zen Maru Gothic', sans-serif;
             background-color: var(--ac-green);
             /* 更細緻的斜紋背景 */
-            background-image:
-                repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255, 255, 255, 0.2) 20px, rgba(255, 255, 255, 0.2) 40px);
+            /* background-image: */
+                /* repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255, 255, 255, 0.2) 20px, rgba(255, 255, 255, 0.2) 40px); */
             min-height: 100vh;
             color: var(--ac-dark);
             /* 防止 iOS 左右滑動 */
             overflow-x: hidden;
             padding-bottom: 20px;
         }
+
+body::before {
+    content: "";
+    position: fixed;
+    top:0;left:0;right:0;bottom:0;
+    pointer-events: none;
+    background: 
+        linear-gradient(120deg,
+            rgba(120,255,210,0.3),
+            transparent 40%),
+        linear-gradient(90deg,
+            rgba(80,200,255,0.2),
+            transparent 60%);
+    mix-blend-mode: screen;
+}
+
 
         /* 頂部狀態列 */
         .status-bar {
@@ -87,29 +103,30 @@
 
         /* === 核心：今日焦點卡片 === */
         .hero-card {
-            background: var(--ac-cream);
-            border-radius: 35px;
-            padding: 30px 25px;
-            text-align: center;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            border: 4px solid white;
-            margin-bottom: 25px;
-            position: relative;
+    background: rgba(255,255,255,0.85);
+    border-radius: 45px;
+    padding: 40px 30px;
+    border: 3px solid rgba(255,255,255,0.7);
+
+    /* 強光暈 + 柔焦陰影 */
+    box-shadow:
+        0 20px 40px rgba(30,120,255,0.35),
+        0 0 60px rgba(120,255,210,0.4),
+        0 0 100px rgba(255,200,80,0.25);
+        
+    backdrop-filter: blur(18px);
         }
 
         /* 像動森的對話氣泡 */
         .hero-period {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--ac-blue);
-            color: white;
-            padding: 5px 20px;
-            border-radius: 20px;
-            font-weight: bold;
-            border: 3px solid white;
-            box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+    background: linear-gradient(90deg, #50F8E2, #78F8D1, #FFE47A, #FF8A6B);
+    color: #0B1226;
+    border-radius: 25px;
+    border: 4px solid rgba(255,255,255,0.9);
+
+    box-shadow: 
+        0 0 12px rgba(120,255,210,0.6),
+        inset 0 0 6px rgba(255,255,255,0.9);
         }
 
         .hero-temp-container {
@@ -177,11 +194,11 @@
         }
 
         .advice-text {
-            font-size: 1.4rem;
-            font-weight: 900;
-            color: var(--ac-brown);
-            margin: 5px 0;
-            line-height: 1.2;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #0B1226; /* 深星空藍，高對比 */
+    margin: 5px 0;
+    line-height: 1.2;
         }
 
         /* === 稍後預報：橫向滑動區 === */
@@ -236,9 +253,10 @@
         }
 
         .mini-temp {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: var(--ac-dark);
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #FF9E7D; /* 極光粉橘 */
+    text-shadow: 0 0 4px rgba(255, 158, 125, 0.35);
         }
 
         /* Loading 畫面 */
@@ -345,12 +363,12 @@
                                 <div class="advice-item">
                                     <div class="advice-icon">${advice.rainIcon}</div>
                                     <div class="advice-text">${advice.rainText}</div>
-                                    <div style="font-size:0.7rem; color:#999">降雨率 ${current.rain}</div>
+                                    <div style="font-size:0.7rem; color:#B3C4FF;">降雨率 ${current.rain}</div>
                                 </div>
                                 <div class="advice-item">
                                     <div class="advice-icon">${advice.clothIcon}</div>
                                     <div class="advice-text">${advice.clothText}</div>
-                                    <div style="font-size:0.7rem; color:#999">最高溫 ${current.maxTemp}°</div>
+                                    <div style="font-size:0.7rem; color:#B3C4FF;">最高溫 ${current.maxTemp}°</div>
                                 </div>
                             </div>
                         </div>
