@@ -197,7 +197,7 @@ body::before {
         .advice-text {
     font-size: 1.4rem;
     font-weight: 900;
-    color: #0B1226; /* 深星空藍，高對比 */
+    color: #FF6F61; /* 改為顯眼的橙紅色 */
     margin: 5px 0;
     line-height: 1.2;
         }
@@ -364,12 +364,12 @@ body::before {
                                 <div class="advice-item">
                                     <div class="advice-icon">${advice.rainIcon}</div>
                                     <div class="advice-text">${advice.rainText}</div>
-                                    <div style="font-size:0.7rem; color:#B3C4FF;">降雨率 ${current.rain}</div>
+                                    <div style="font-size:0.7rem; color:#0066A1;">降雨率 ${current.rain}</div>
                                 </div>
                                 <div class="advice-item">
                                     <div class="advice-icon">${advice.clothIcon}</div>
                                     <div class="advice-text">${advice.clothText}</div>
-                                    <div style="font-size:0.7rem; color:#B3C4FF;">最高溫 ${current.maxTemp}°</div>
+                                    <div style="font-size:0.7rem; color:#0066A1;">最高溫 ${current.maxTemp}°</div>
                                 </div>
                             </div>
                         </div>
@@ -396,7 +396,7 @@ body::before {
                                 <div class="mini-time">${p}</div>
                                 <div class="mini-icon">${getWeatherIcon(f.weather)}</div>
                                 <div class="mini-temp">${f.minTemp}° - ${f.maxTemp}°</div>
-                                <div style="font-size:0.8rem; color:#888; margin-top:5px;">💧${f.rain}</div>
+                                <div style="font-size:0.8rem; color:#333; margin-top:5px;">💧${f.rain}</div>
                             </div>
                         `;
             });
